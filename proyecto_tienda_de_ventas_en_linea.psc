@@ -6,6 +6,7 @@ Algoritmo proyecto_tienda_de_ventas_en_linea
 	// - Control de ventas por clientes
 	// - Total recaudado por clientes por sexo
 	// - Total general recaudado general
+	//Definimos las variables, según el tipo de dato que van a recaudar
 	Definir stockpantalon, stockshortdeportivo, stockplayera, stockcalcetines Como Entero
 	Definir stockpants, stockshort, stockblusa, stockchaqueta Como Entero
 	Definir stockzapatillas, stocktenis, stockcrocs, stockzapatos Como Entero
@@ -34,11 +35,16 @@ Algoritmo proyecto_tienda_de_ventas_en_linea
 	stockchanclas <- 100 
 	stocktacones <- 100
 	stockcrocsrosas <- 100
-	stockzapatillas <- 100
+	stockazpatillasfemeninas <- 100
+	recaudadosexoF <- 0
+	recaudadosexoM <- 0 
+	totalrecaudado <- 0 
 	Repetir 
-		Escribir "Desea ingresar un nuevo cliente?"
+		//Aquí empieza el código, primero preguntamos sí buscamos ingresar un nuevo cliente, por lo que vamos a leer la respuesta y dependiendo de la misma será la duración del algoritmo.
+		Escribir "Desea ingresar un nuevo cliente?(Si/No)"
 		leer cliente
 		Si cliente="Si" Entonces
+			c <- (c + 1)
 			pantalonescomprados <- 0
 			shortsdeportivoscomprados <- 0
 			playerascompradas <- 0
@@ -55,6 +61,7 @@ Algoritmo proyecto_tienda_de_ventas_en_linea
 			taconescomprados <- 0 
 			crocsrosascomprados <- 0 
 			zapatillasfemeninascompradas <- 0
+			//Preguntamos por algunos datos generales
 			Escribir "¿Cuál es tu nombre?"
 			leer nombre
 			Escribir "¿Cuál es tu sexo? (M/F)"
@@ -64,7 +71,6 @@ Algoritmo proyecto_tienda_de_ventas_en_linea
 				Leer respuesta
 				// Lo primero que haremos es crear un menú de tal modo que el usuario pueda acceder a distintos apartados de ropa cada uno con distintos tipos de productos y precios
 				Si respuesta='Si' Entonces
-					c <- (c + 1)
 					Escribir 'Escoge tu categoría deseada:'
 					Escribir '1. Ropa masculina deportiva.'
 					Escribir '2. Ropa femenina deportiva.'
@@ -83,7 +89,7 @@ Algoritmo proyecto_tienda_de_ventas_en_linea
 							Escribir "5. Volver"
 							Leer respuestaropamasculina
 							Segun respuestaropamasculina Hacer
-								//Sección ropa masculina
+									//Sección ropa masculina
 								"1":
 									costo <- 200
 									Repetir
@@ -94,9 +100,9 @@ Algoritmo proyecto_tienda_de_ventas_en_linea
 										SiNo
 											monto = costo*respuestastock
 											pantalonescomprados = respuestastock
-											totalRecaudadoPantalon <- totalRecaudadoPantalon + (costoPantalon * pantalonescomprados)
-										FinSi
+											totalRecaudadoPantalon <- totalRecaudadoPantalon + (costo * pantalonescomprados)
 											Escribir "Has adquirido:", respuestastock " Pantalones, con un costo de: ", monto;
+										FinSi
 									Hasta Que (respuestastock <= stockpantalon)
 								"2":
 									costo <- 150
@@ -108,8 +114,9 @@ Algoritmo proyecto_tienda_de_ventas_en_linea
 										SiNo
 											monto = costo*respuestastock
 											shortsdeportivoscomprados = respuestastock
+											totalRecaudadoShortDeportivo <- totalRecaudadoShortDeportivo + (costo * shortsdeportivoscomprados)
+											Escribir "Has adquirido:", respuestastock " Shorts deportivos, con un costo de: ", monto;
 										FinSi
-										Escribir "Has adquirido:", respuestastock " Shorts deportivos, con un costo de: ", monto;
 									Hasta Que (respuestastock <= stockshortdeportivo)
 								"3":
 									costo <- 250
@@ -121,8 +128,9 @@ Algoritmo proyecto_tienda_de_ventas_en_linea
 										SiNo
 											monto = costo*respuestastock
 											playerascompradas = respuestastock
+											totalRecaudadoPlayera <- totalRecaudadoPlayera + (costo*playerascompradas)
+											Escribir "Has adquirido:", respuestastock " Playeras, con un costo de: ", monto;
 										FinSi
-										Escribir "Has adquirido:", respuestastock " Playeras, con un costo de: ", monto;
 									Hasta Que (respuestastock <= stockplayera)
 								"4":
 									costo <- 100
@@ -134,10 +142,10 @@ Algoritmo proyecto_tienda_de_ventas_en_linea
 										SiNo
 											monto = costo*respuestastock
 											calcetinescomprados = respuestastock
+											totalRecaudadoCalcetines <- totalRecaudadoCalcetines + (costo*calcetinescomprados)
+											Escribir "Has adquirido:", respuestastock " Calcetines, con un costo de: ", monto;
 										FinSi
-										Escribir "Has adquirido:", respuestastock " Calcetines, con un costo de: ", monto;
 									Hasta Que (respuestastock <= stockcalcetines)
-								"5":
 							FinSegun
 						"2":
 							//Seccción ropa femenina
@@ -151,6 +159,7 @@ Algoritmo proyecto_tienda_de_ventas_en_linea
 							Segun respuestatiporopafemenina Hacer
 								"1":
 									Repetir
+										costo <- 200
 										Escribir "¿Cuántos deseas comprar?"
 										leer respuestastock
 										Si (respuestastock > stockpants) Entonces
@@ -158,11 +167,13 @@ Algoritmo proyecto_tienda_de_ventas_en_linea
 										SiNo
 											monto = costo*respuestastock
 											pantscomprados = respuestastock
+											totalRecaudadoPants = totalRecaudadoPants + (costo*pantscomprados)
+											Escribir "Has adquirido:", respuestastock " Calcetinces, con un costo de :", monto;
 										FinSi
-										Escribir "Has adquirido:", respuestastock " Calcetinces, con un costo de :", monto;
 									Hasta Que (respuestastock <= stockpants)
 								"2":
 									Repetir
+										costo <- 150
 										Escribir "¿Cuántos deseas comprar?"
 										leer respuestastock
 										Si (respuestastock > stockshort) Entonces
@@ -170,11 +181,13 @@ Algoritmo proyecto_tienda_de_ventas_en_linea
 										SiNo
 											monto = costo*respuestastock
 											shortsfemeninoscomprados = respuestastock
+											totalRecaudadoShortsFemeninos = totalRecaudadoShortsFemeninos + (costo*shortsfemeninoscomprados)
+											Escribir "Has adquirido:", respuestastock " Shorts, con un costo de :", monto;
 										FinSi
-										Escribir "Has adquirido:", respuestastock " Shorts, con un costo de :", monto;
 									Hasta Que (respuestastock <= stockshort)
 								"3":
 									Repetir
+										costo <- 200
 										Escribir "¿Cuántos deseas comprar?"
 										leer respuestastock
 										Si (respuestastock > stockblusa) Entonces
@@ -182,11 +195,13 @@ Algoritmo proyecto_tienda_de_ventas_en_linea
 										SiNo
 											monto = costo*respuestastock
 											blusascompradas = respuestastock
+											totalRecaudadoBlusa = totalRecaudadoBlusa + (costo*totalRecaudadoBlusa)
+											Escribir "Has adquirido:", respuestastock " Blusas, con un costo de: ", monto;
 										FinSi
-										Escribir "Has adquirido:", respuestastock " Blusas, con un costo de: ", monto;
 									Hasta Que (respuestastock <= stockblusa)
 								"4":
 									Repetir
+										costo <- 300
 										Escribir "¿Cuántos deseas comprar?"
 										leer respuestastock
 										Si (respuestastock > stockchaqueta) Entonces
@@ -194,10 +209,10 @@ Algoritmo proyecto_tienda_de_ventas_en_linea
 										SiNo
 											monto = costo*respuestastock
 											chaquetascomparadas = respuestastock
+											totalRecaudadoChaqueta = totalRecaudadoChaqueta + (costo*chaquetascompradas)
+											Escribir "Has adquirido:", respuestastock " Blusas, con un costo de: ", monto;
 										FinSi
-										Escribir "Has adquirido:", respuestastock " Blusas, con un costo de: ", monto;
 									Hasta Que (respuestastock <= stockchaqueta)
-								"5":
 							FinSegun
 							//Sección calzado masculino
 						"3":
@@ -219,12 +234,13 @@ Algoritmo proyecto_tienda_de_ventas_en_linea
 										SiNo
 											monto = costo*respuestastock
 											zapatillascompradas = respuestastock
+											totalRecaudadoZapatillas = totalRecaudadoZapatillas + (costo*zapatillascompradas)
+											Escribir "Has adquirido:", respuestastock " Zapatillas, con un costo de: ", monto;
 										FinSi
-										Escribir "Has adquirido:", respuestastock " Blusas, con un costo de: ", monto;
 									Hasta Que (respuestastock <= stockzapatillas)
 								"2":
 									Repetir
-										costo <- 600
+										costo <- 350
 										Escribir "¿Cuántos deseas comprar?"
 										leer respuestastock
 										Si (respuestastock > stocktenis) Entonces
@@ -232,12 +248,13 @@ Algoritmo proyecto_tienda_de_ventas_en_linea
 										SiNo
 											monto = costo*respuestastock
 											teniscomprados = respuestastock
+											totalRecaudadoTenis = totalRecaudadoTenis + (costo*teniscomprados)
+											Escribir "Has adquirido:", respuestastock " Tenis, con un costo de: ", monto;
 										FinSi
-										Escribir "Has adquirido:", respuestastock " Tenis, con un costo de: ", monto;
 									Hasta Que (respuestastock <= stocktenis)
 								"3":
 									Repetir
-										costo <- 600
+										costo <- 100
 										Escribir "¿Cuántos deseas comprar?"
 										leer respuestastock
 										Si (respuestastock > stockcrocs) Entonces
@@ -245,12 +262,13 @@ Algoritmo proyecto_tienda_de_ventas_en_linea
 										SiNo
 											monto = costo*respuestastock
 											crocscomprados = respuestastock
+											totalRecaudadoCrocs = totalRecaudadoCrocs + (costo*crocscomprados)
+											Escribir "Has adquirido:", respuestastock " crocs, con un costo de: ", monto;
 										FinSi
-										Escribir "Has adquirido:", respuestastock " crocs, con un costo de: ", monto;
 									Hasta Que (respuestastock <= stockcrocs)
 								"4":
 									Repetir
-										costo <- 600
+										costo <- 400
 										Escribir "¿Cuántos deseas comprar?"
 										leer respuestastock
 										Si (respuestastock > stockzapatos) Entonces
@@ -258,8 +276,9 @@ Algoritmo proyecto_tienda_de_ventas_en_linea
 										SiNo
 											monto = costo*respuestastock
 											zapatoscomprados = respuestastock
+											totalRecaudadoZapatos = totalRecaudadoZapatos + (costo*zapatoscomprados)
+											Escribir "Has adquirido:", respuestastock "Zapatos,con un costo de: ", monto;
 										FinSi
-										Escribir "Has adquirido:", respuestastock "Zapatos,con un costo de: ", monto;
 									Hasta Que (respuestastock <= stockzapatos)
 								"5":
 							FinSegun
@@ -275,7 +294,7 @@ Algoritmo proyecto_tienda_de_ventas_en_linea
 							Segun respuestatipocalzadofemenina Hacer
 								"1": 
 									Repetir
-										costo <- 600
+										costo <- 200
 										Escribir "¿Cuántos deseas comprar?"
 										leer respuestastock
 										Si (respuestastock > stockchanclas) Entonces
@@ -283,8 +302,9 @@ Algoritmo proyecto_tienda_de_ventas_en_linea
 										SiNo
 											monto = costo*respuestastock
 											chanclascompradas = respuestastock
-										FinSi
-										Escribir "Has adquirido:", respuestastock "Chanclas, con un costo de: ", monto;
+											totalRecaudadoChanclas = totalRecaudadoChanclas + (costo*chanclascompradas)
+											Escribir "Has adquirido:", respuestastock "Chanclas, con un costo de: ", monto;
+										FinSi	
 									Hasta Que (respuestastock <= stockchanclas)
 								"2":
 									Repetir
@@ -296,12 +316,13 @@ Algoritmo proyecto_tienda_de_ventas_en_linea
 										SiNo
 											monto = costo*respuestastock
 											taconescomprados = respuestastock
+											totalRecaudadoTacones = totalRecaudadoTacones + (costo*taconescomprados)
+											Escribir "Has adquirido:", respuestastock " Tacones, con un costo de: ", monto;
 										FinSi
-										Escribir "Has adquirido:", respuestastock " Tacones, con un costo de: ", monto;
 									Hasta Que (respuestastock <= stocktacones)
 								"3":
 									Repetir
-										costo <- 600
+										costo <- 200
 										Escribir "¿Cuántos deseas comprar?"
 										leer respuestastock
 										Si (respuestastock > stockcrocsrosas) Entonces
@@ -309,12 +330,13 @@ Algoritmo proyecto_tienda_de_ventas_en_linea
 										SiNo
 											monto = costo*respuestastock
 											crocsrosascomprados = respuestastock
+											totalRecaudadoCrocsRosas = totalRecaudadoCrocsRosas + (costo*crocsrosascomprados)
+											Escribir "Has adquirido:", respuestastock " Crocs rosas, con un costo de: ", monto;
 										FinSi
-										Escribir "Has adquirido:", respuestastock " Crocs rosas, con un costo de: ", monto;
 									Hasta Que (respuestastock <= stockcrocsrosas)
 								"4":
 									Repetir
-										costo <- 600
+										costo <- 500
 										Escribir "¿Cuántos deseas comprar?"
 										leer respuestastock
 										Si (respuestastock > stockazpatillasfemeninas) Entonces
@@ -322,16 +344,18 @@ Algoritmo proyecto_tienda_de_ventas_en_linea
 										SiNo
 											monto = costo*respuestastock
 											zapatillasfemeninascompradas = respuestastock
+											totalRecaudadoZapatillasFemeninas = totalRecaudadoZapatillasFemeninas + (costo*zapatillasfemeninascompradas)
+											Escribir "Has adquirido:", respuestastock " Zapatillas femeninas, con un costo de: ", monto;
 										FinSi
-										Escribir "Has adquirido:", respuestastock " Zapatillas femeninas, con un costo de: ", monto;
 									Hasta Que (respuestastock <= stockazpatillasfemeninas)
-								"5":
 							FinSegun
 						De Otro Modo:
 							Escribir "Por favor, ingresa una opción válida"
 					FinSegun
 				FinSi
 			Hasta Que (respuesta='No')
+			
+			// Después de calcular totalrecaudadogeneral
 			//Sección ropa masculina
 			Escribir "El cliente: ", nombre " Adquirió un total de: " pantalonescomprados " pantalones. ";
 			Escribir "El cliente: ", nombre " Adquirió un total de: " shortsdeportivoscomprados " shorts. ";
@@ -351,8 +375,20 @@ Algoritmo proyecto_tienda_de_ventas_en_linea
 			Escribir "El cliente: ", nombre " Adquirió un total de: " chanclascompradas " chanclas. ";
 			Escribir "El cliente: ", nombre " Adquirió un total de: " taconescomprados " tacones. ";
 			Escribir "El cliente: ", nombre " Adquirió un total de: " crocsrosascomprados " crocs rosas. ";
-			Escribir "El cliente: ", nombre " Adquirió un total de: " zapatillasfemeninascompradas " zapatillas femeninas. "
+			Escribir "El cliente: ", nombre " Adquirió un total de: " zapatillasfemeninascompradas " zapatillas femeninas. " 
+		FinSi
+	Hasta Que (cliente="No")
+	totalRecaudado <- totalRecaudadoPantalon + totalRecaudadoShortDeportivo + totalRecaudadoPlayera + totalRecaudadoCalcetines +totalRecaudadoPants + totalRecaudadoShortsFemeninos + totalRecaudadoPlayera + totalRecaudadoChaqueta +totalRecaudadoZapatillas + totalRecaudadoTenis + totalRecaudadoCrocs + totalRecaudadoZapatos +totalRecaudadoChanclas + totalRecaudadoTacones + totalRecaudadoCrocsRosas + totalRecaudadoZapatillasFemeninas
+	Si sexo = "M"
+		recaudadosexoM <- recaudadosexoM + totalRecaudado
+	Sino 
+		Si sexo= "F"  Entonces
+			recaudadosexoF <- recaudadosexoF + totalRecaudado
+		FinSi
 	FinSi
-Hasta Que (cliente="No")
-
+	Escribir "El total de clientes es de: " c;
+	Escribir "El total recaudado por concepto de ropa masculina deportiva vendida es de: ", (totalRecaudadoPantalon + totalRecaudadoShortDeportivo + totalRecaudadoPlayera + totalRecaudadoCalcetines)
+	Escribir "El total recaudado en general es de: ", totalRecaudado;
+	Escribir "El total recaudado por el sexo masculino es de:", recaudadosexoM;
+	Escribir "El total recaudado por el sexo femenino es de:", recaudadosexoF;
 FinAlgoritmo
