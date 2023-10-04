@@ -80,8 +80,10 @@ Algoritmo proyecto_tienda_de_ventas_en_linea
 					Escribir '4. Calzado femenino.'
 					Escribir "5. Volver"
 					// la variable "respuestaTipo" es la encargada de leer a qué apartado de las distintas secciones se nos llevará
+					//A continuación, se repetirán 4 menús sumamente similares encargados de dar acceso a las distintas categorías de los productos, según la escogida.
 					Leer respuestaTipo
 					Segun respuestaTipo Hacer 
+							//Sección ropa masculina, si se escoge 1 entonces abrirá el siguiente menú: 
 						"1": 
 							Escribir "¿Cuál producto deseas adquirir?"
 							Escribir '1. Pantalón $200'
@@ -91,7 +93,6 @@ Algoritmo proyecto_tienda_de_ventas_en_linea
 							Escribir "5. Volver"
 							Leer respuestaropamasculina
 							Segun respuestaropamasculina Hacer
-									//Sección ropa masculina
 								"1":
 									costo <- 200
 									Repetir
@@ -149,8 +150,8 @@ Algoritmo proyecto_tienda_de_ventas_en_linea
 										FinSi
 									Hasta Que (respuestastock <= stockcalcetines)
 							FinSegun
+							//Seccción ropa femenina, sí se escoge 2, entonces nos llevará al siguiente menú:
 						"2":
-							//Seccción ropa femenina
 							Escribir "¿Cuál producto deseas adquirir?"
 							Escribir '1. Pants $200'
 							Escribir '2. Short $150'
@@ -216,7 +217,7 @@ Algoritmo proyecto_tienda_de_ventas_en_linea
 										FinSi
 									Hasta Que (respuestastock <= stockchaqueta)
 							FinSegun
-							//Sección calzado masculino
+							//Sección calzado masculino, sí se escoge 3, entonces se dará este otro menú
 						"3":
 							Escribir "¿Cuál producto deseas adquirir?"
 							Escribir '1. Zapatillas de correr $600'
@@ -282,10 +283,9 @@ Algoritmo proyecto_tienda_de_ventas_en_linea
 											Escribir "Has adquirido:", respuestastock "Zapatos,con un costo de: ", monto;
 										FinSi
 									Hasta Que (respuestastock <= stockzapatos)
-								"5":
 							FinSegun
+							//Sección calzado femenino, sí se escoge 4, entonces se abrirá este otro menú
 						"4":
-							//Sección calzado femenino
 							Escribir "¿Cuál producto deseas adquirir?"
 							Escribir '1. Chanclas $200'
 							Escribir '2. Tacones $600'
@@ -356,9 +356,8 @@ Algoritmo proyecto_tienda_de_ventas_en_linea
 					FinSegun
 				FinSi
 			Hasta Que (respuesta='No')
-			
-			// Después de calcular totalrecaudadogeneral
-			//Sección ropa masculina
+		//Después de cada compra, se imprime la cantidad de productos que compró y el costo total de los mismos
+		//Al final de que el cliente termina de hacer sus compras, se imprime todo lo que compró
 			Escribir "El cliente: ", nombre " Adquirió un total de: " pantalonescomprados " pantalones. ";
 			Escribir "El cliente: ", nombre " Adquirió un total de: " shortsdeportivoscomprados " shorts. ";
 			Escribir "El cliente: ", nombre " Adquirió un total de: " playerascompradas " playeras. ";
@@ -378,6 +377,7 @@ Algoritmo proyecto_tienda_de_ventas_en_linea
 			Escribir "El cliente: ", nombre " Adquirió un total de: " taconescomprados " tacones. ";
 			Escribir "El cliente: ", nombre " Adquirió un total de: " crocsrosascomprados " crocs rosas. ";
 			Escribir "El cliente: ", nombre " Adquirió un total de: " zapatillasfemeninascompradas " zapatillas femeninas. " 
+			//Se declara la variable del total recaudado, sumando todas las demás variables de totalrecaudado
 			totalRecaudado <- totalRecaudadoPantalon + totalRecaudadoShortDeportivo + totalRecaudadoPlayera + totalRecaudadoCalcetines +totalRecaudadoPants + totalRecaudadoShortsFemeninos + totalRecaudadoPlayera + totalRecaudadoChaqueta +totalRecaudadoZapatillas + totalRecaudadoTenis + totalRecaudadoCrocs + totalRecaudadoZapatos +totalRecaudadoChanclas + totalRecaudadoTacones + totalRecaudadoCrocsRosas + totalRecaudadoZapatillasFemeninas
 			Si sexo = "M" Entonces
 				recaudadosexoM <- recaudadosexoM + totalRecaudado
@@ -388,6 +388,7 @@ Algoritmo proyecto_tienda_de_ventas_en_linea
 			FinSi
 		FinSi
 	Hasta Que (cliente="No")
+	//Al final se imprimirán el total de cantidad de clientes, el concepto del total acumulado por la venta de la ropa masculina deportiva, la recaudación separada por sexos y el total recaudado general
    totalrecaudadogeneral <- recaudadosexoF + recaudadosexoM
 	Escribir "El total de clientes es de: " c;
 	Escribir "El total recaudado por concepto de ropa masculina deportiva vendida es de: ", (totalRecaudadoPantalon + totalRecaudadoShortDeportivo + totalRecaudadoPlayera + totalRecaudadoCalcetines)
