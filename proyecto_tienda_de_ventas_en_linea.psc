@@ -16,6 +16,7 @@ Algoritmo proyecto_tienda_de_ventas_en_linea
 	Definir pantscomprados, shortsfemeninoscomprados, blusascompradas, chaquetascomparadas Como Entero
 	Definir zapatillascompradas, teniscomprados, crocscomprados, zapatoscomprados Como Entero
 	Definir chanclascompradas, taconescomprados, crocsrosascomprados, zapatillasfemeninascompradas Como Entero
+	Definir recaudadosexoM, recaudadosexoF Como Entero
 	//Sección ropa masculina deportiva
 	stockpantalon <- 100
 	stockshortdeportivo <- 100
@@ -64,10 +65,11 @@ Algoritmo proyecto_tienda_de_ventas_en_linea
 			//Preguntamos por algunos datos generales
 			Escribir "¿Cuál es tu nombre?"
 			leer nombre
+			
 			Escribir "¿Cuál es tu sexo? (M/F)"
 			Leer sexo
 			Repetir 
-				Escribir '¿Desea comprar un nuevo producto?"
+				Escribir '¿Desea comprar un nuevo producto?(Si/No)"
 				Leer respuesta
 				// Lo primero que haremos es crear un menú de tal modo que el usuario pueda acceder a distintos apartados de ropa cada uno con distintos tipos de productos y precios
 				Si respuesta='Si' Entonces
@@ -376,19 +378,20 @@ Algoritmo proyecto_tienda_de_ventas_en_linea
 			Escribir "El cliente: ", nombre " Adquirió un total de: " taconescomprados " tacones. ";
 			Escribir "El cliente: ", nombre " Adquirió un total de: " crocsrosascomprados " crocs rosas. ";
 			Escribir "El cliente: ", nombre " Adquirió un total de: " zapatillasfemeninascompradas " zapatillas femeninas. " 
+			totalRecaudado <- totalRecaudadoPantalon + totalRecaudadoShortDeportivo + totalRecaudadoPlayera + totalRecaudadoCalcetines +totalRecaudadoPants + totalRecaudadoShortsFemeninos + totalRecaudadoPlayera + totalRecaudadoChaqueta +totalRecaudadoZapatillas + totalRecaudadoTenis + totalRecaudadoCrocs + totalRecaudadoZapatos +totalRecaudadoChanclas + totalRecaudadoTacones + totalRecaudadoCrocsRosas + totalRecaudadoZapatillasFemeninas
+			Si sexo = "M" Entonces
+				recaudadosexoM <- recaudadosexoM + totalRecaudado
+			Sino 
+				Si sexo = "F"
+					recaudadosexoF <- recaudadosexoF + totalRecaudado 
+				FinSi
+			FinSi
 		FinSi
 	Hasta Que (cliente="No")
-	totalRecaudado <- totalRecaudadoPantalon + totalRecaudadoShortDeportivo + totalRecaudadoPlayera + totalRecaudadoCalcetines +totalRecaudadoPants + totalRecaudadoShortsFemeninos + totalRecaudadoPlayera + totalRecaudadoChaqueta +totalRecaudadoZapatillas + totalRecaudadoTenis + totalRecaudadoCrocs + totalRecaudadoZapatos +totalRecaudadoChanclas + totalRecaudadoTacones + totalRecaudadoCrocsRosas + totalRecaudadoZapatillasFemeninas
-	Si sexo = "M"
-		recaudadosexoM <- recaudadosexoM + totalRecaudado
-	Sino 
-		Si sexo= "F"  Entonces
-			recaudadosexoF <- recaudadosexoF + totalRecaudado
-		FinSi
-	FinSi
+   totalrecaudadogeneral <- recaudadosexoF + recaudadosexoM
 	Escribir "El total de clientes es de: " c;
 	Escribir "El total recaudado por concepto de ropa masculina deportiva vendida es de: ", (totalRecaudadoPantalon + totalRecaudadoShortDeportivo + totalRecaudadoPlayera + totalRecaudadoCalcetines)
-	Escribir "El total recaudado en general es de: ", totalRecaudado;
 	Escribir "El total recaudado por el sexo masculino es de:", recaudadosexoM;
-	Escribir "El total recaudado por el sexo femenino es de:", recaudadosexoF;
+	Escribir "El total recaudado por el sexo femenino es de:", recaudadosexoF-recaudadosexoM;
+	Escribir "El total recaudado en general es de: ", totalRecaudadoGeneral-recaudadosexoM;
 FinAlgoritmo
